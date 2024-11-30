@@ -28,6 +28,14 @@ function App() {
     localStorage.setItem('todo-app', JSON.stringify({ todos: currentTodos })
     )
   }
+
+  function updateTodo(index, updatedText) {
+  const newTodoList = [...todos];
+  newTodoList[index].input = updatedText;
+  setTodos(newTodoList);
+  handleSavedData(newTodoList);
+  }
+  
   useEffect(() => {
     if (!localStorage || !localStorage.getItem('todo-app')) { return }
     let db = JSON.parse(localStorage.getItem('todo-app'))
@@ -39,7 +47,7 @@ function App() {
 
       <Header todos={todos} />
       <Tabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} todos={todos} />
-      <TodoList todos={todos} tab={selectedTab} completeTodo={completeTodo} deleteTodo={deleteTodo} />
+      <TodoList todos={todos} tab={selectedTab} completeTodo={completeTodo} deleteTodo={deleteTodo} updateTodo={updateTodo}/>
       <TodoInput handleAddTodo={handleAddTodo} />
     </>
   )
