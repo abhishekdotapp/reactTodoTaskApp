@@ -32,6 +32,7 @@ function App() {
   function updateTodo(index, updatedText) {
   const newTodoList = [...todos];
   newTodoList[index].input = updatedText;
+  newTodoList[index].complete = false;
   setTodos(newTodoList);
   handleSavedData(newTodoList);
   }
